@@ -19,7 +19,7 @@ struct ColorSpaceStandardizerTests {
         // Display P3's ICC data with its description changed: same colourimetry, custom (identifying) text.
         var bytes = [UInt8](try #require(CGColorSpace(name: CGColorSpace.displayP3)?.copyICCData()) as Data)
         let from = Array("Display P3".utf16).flatMap { [UInt8($0 >> 8), UInt8($0 & 0xFF)] }
-        let to = Array("TestUserMBP".utf16).flatMap { [UInt8($0 >> 8), UInt8($0 & 0xFF)] }
+        let to = Array("TestMac-01".utf16).flatMap { [UInt8($0 >> 8), UInt8($0 & 0xFF)] }
         var index = 0
         while index + from.count <= bytes.count {
             if Array(bytes[index..<index + from.count]) == from { bytes.replaceSubrange(index..<index + from.count, with: to) }
